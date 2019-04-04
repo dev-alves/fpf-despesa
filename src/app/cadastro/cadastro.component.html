@@ -1,0 +1,45 @@
+<div class="container secao-cadastro">
+  <div class="form-container">
+    <div class="titulo">
+      <h1>Cadastrar despesa</h1>
+    </div>
+    <div class="container-fluid">
+      <form method="POST">
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <label for="descricao" class="control-label">Descrição</label>
+            <input type="text" class="form-control" autofocus id="nome">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="valor" class="control-label">Valor</label>
+            <input type="text" class="form-control" id="valor">
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="data" class="control-label">Data da despesa</label>
+            <input type="text" class="form-control" id="data">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-12">
+              <label for="tipo" class="control-label">Tipo da despesa</label>
+              <select class="form-control">
+                <option>Select o tipo da despesa</option>
+              </select>
+          </div>
+        </div>
+        <div class="row">
+            <div class="input-group col-sm-8">
+              <div class="custom-file">
+                <label class="custom-file-label" for="anexo">Anexar comprovante</label>
+                <input type="file" class="custom-file-input" id="anexo">
+              </div>
+            </div>
+        </div>
+        <br>
+        <button type="submit" class="btn  btn-primary">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>
