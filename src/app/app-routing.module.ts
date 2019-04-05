@@ -3,8 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: 'nova', loadChildren: './cadastro/cadastro.module#CadastroModule' },
-  { path: '', loadChildren: './tabela/tabela.module#TabelaModule' },
-  { path: '', pathMatch: 'full', redirectTo: 'home' }
+  { path: 'tabela', loadChildren: './tabela/tabela.module#TabelaModule' },
+  { path: '', loadChildren: '../graphs/pie/pie.module#PieModule' },
+  { path: '', pathMatch: 'full', redirectTo: '' }
 ];
 
 @NgModule({

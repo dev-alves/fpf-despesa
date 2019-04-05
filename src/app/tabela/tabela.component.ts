@@ -22,7 +22,15 @@ export class TabelaComponent implements OnInit {
   }
 
   remover(despesa: Despesa) {
-    this.despesaService.deletarDespesa(despesa);
+    this.despesaService.deletarDespesa(despesa).subscribe(
+      () => {
+        this.despesaService.listarDespesas().subscribe(
+          desepesas => {
+            this.despesas = desepesas;
+          }
+        )
+      }
+    );
   }
 
 }

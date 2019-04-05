@@ -18,6 +18,10 @@
     display: flex;
 }
 
+.menu-itens :first-child {
+    margin-right: 5px;
+}
+
 .menu-itens li a {
     display: block;
     background-color: #AED136;

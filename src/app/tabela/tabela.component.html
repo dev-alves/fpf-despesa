@@ -14,7 +14,7 @@
       <tr *ngFor="let despesa of despesas">
         <td>{{despesa.descricao}}</td>
         <td>{{despesa.valorDespesa}}</td>
-        <td>{{despesa.dataDespesa}}</td>
+        <td>{{despesa.dataDespesa | date: 'dd/MM/yyyy'}}</td>
         <td>
           <a href="#">{{despesa.anexo}}</a>
         </td>

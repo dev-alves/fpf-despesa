@@ -67,6 +67,7 @@ export class CadastroComponent implements OnInit {
           });
          }
       } else {
+        this.mensagemLabelComprovante('Anexar comprovante');
         this.despesaForm.reset();
         this.fecharMensagensDeErro();
         this.mensagemSucesso = true;
@@ -95,12 +96,16 @@ export class CadastroComponent implements OnInit {
       
       this.anexoService.upload(formData).subscribe(
         response => {
-          let labelAnexo = document.querySelector('.js-anexo');
-          labelAnexo.textContent = 'Comprovamente anexado';
+          this.mensagemLabelComprovante('Comprovamente anexado');
           this.anexoUploaded = new Anexo();
           this.anexoUploaded.nome = response.nome;
         }
       );
     }
+  }
+
+  mensagemLabelComprovante(msg: string) {
+    let labelAnexo = document.querySelector('.js-anexo');
+    labelAnexo.textContent = msg;
   }
 }

@@ -28,8 +28,8 @@ export class DespesaService {
     return this.http.get<Despesa[]>(this.url);
   }
 
-  deletarDespesa(despesa: Despesa): void {
-    this.http.delete(this.url.concat('/', despesa.id.toLocaleString()));
+  deletarDespesa(despesa: Despesa): Observable<{}> {
+    return this.http.delete(`${this.url}/${despesa.id}`);
   }
 
 }
