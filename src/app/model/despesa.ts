@@ -7,7 +7,8 @@ export class Despesa {
     public descricao: string;
     public valorDespesa: number;
     public dataDespesa: Date;
-    public anexo: Anexo;
+    public anexo: string;
+    public contentType: string;
     public tipoDespesa: TipoDespesa
     
 }

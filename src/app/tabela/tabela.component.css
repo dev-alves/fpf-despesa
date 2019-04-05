@@ -1,0 +1,7 @@
+.container .table {
+    margin-top: 50px;
+}
+
+.espacamento button:last-child {
+    margin-left: 5px;
+}

@@ -47,6 +47,12 @@ export class CadastroComponent implements OnInit {
   }
 
   onSubmit(despesa: Despesa) {
+    if(this.anexoUploaded !== undefined) {
+      if(this.anexoUploaded.nome){
+        despesa.anexo = this.anexoUploaded.nome;
+      }
+    }
+    
     this.despesaService.salvar(despesa).subscribe(
       response => {
        if(response !== null) {
@@ -84,13 +90,15 @@ export class CadastroComponent implements OnInit {
     if(event.target.files && event.target.files[0]) {
       const anexo = event.target.files[0];
       const formData = new FormData();
+
       formData.append('anexo', anexo);
       
       this.anexoService.upload(formData).subscribe(
         response => {
           let labelAnexo = document.querySelector('.js-anexo');
           labelAnexo.textContent = 'Comprovamente anexado';
-          this.anexoUploaded = response;
+          this.anexoUploaded = new Anexo();
+          this.anexoUploaded.nome = response.nome;
         }
       );
     }
