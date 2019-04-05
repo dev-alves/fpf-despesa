@@ -3,10 +3,10 @@ import { Anexo } from "./anexo";
 
 export class Despesa {
     
-    public id;
-    public descricao;
-    public valor;
-    public dataDespesa;
+    public id: number;
+    public descricao: string;
+    public valorDespesa: number;
+    public dataDespesa: Date;
     public anexo: Anexo;
     public tipoDespesa: TipoDespesa
     

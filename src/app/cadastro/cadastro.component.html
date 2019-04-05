@@ -3,6 +3,20 @@
     <div class="titulo">
       <h1>Cadastrar despesa</h1>
     </div>
+    <div class="alert  alert-danger  alert-dismissible" role="alert" *ngIf="mensagemValidators != null && mensagemValidators.length > 0">
+      <button type="button" class="close" (click)="fecharMensagensDeErro()" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div *ngFor="let error of mensagemValidators">
+        <div>
+          <i class="fa  fa-exclamation-circle"></i> {{error.mensagem}}
+        </div>
+      </div>
+    </div>
+    <div class="alert  alert-success  alert-dismissible" role="alert" *ngIf="mensagemSucesso">
+      <button type="button" class="close" (click)="fecharMensagemSucesso()" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div>
+          <i class="fa  fa-exclamation-circle"></i> Despesa cadastrada com sucesso
+        </div>
+    </div>
     <div class="container-fluid">
       <form method="POST" [formGroup]="despesaForm" (ngSubmit)="onSubmit(despesaForm.value)">
         <div class="row">
@@ -13,11 +27,11 @@
         </div>
         <div class="row">
           <div class="form-group col-sm-6">
-            <label for="valor" class="control-label">Valor</label>
-            <input type="text" formControlName="valor" class="form-control" id="valor">
+            <label for="valor" class="control-label">Valor</label> <!-- mask="dot_separator" -->
+            <input type="text" formControlName="valorDespesa" class="form-control" id="valor">
           </div>
           <div class="form-group col-sm-6">
-            <label for="data" class="control-label">Data da despesa</label>
+            <label for="data" class="control-label">Data da despesa</label> <!--[patterns]="customPatterns" mask="00/00/0000"-->
             <input type="text" formControlName="dataDespesa" class="form-control" id="dataDespesa">
           </div>
         </div>
@@ -25,8 +39,8 @@
           <div class="form-group col-sm-12">
               <label for="tipo" class="control-label">Tipo da despesa</label>
               <select class="form-control" formControlName="tipoDespesa">
-                <option>Selecione o tipo da despesa</option>
-                <option *ngFor="let tipo of tiposDeDespesa" ngValue="tipoDespesa">
+                <option value="">Selecione o tipo da despesa</option>
+                <option *ngFor="let tipo of tiposDeDespesa" [ngValue]="tipo">
                   {{tipo.nome}}
                 </option>
                 tiposDeDespesa

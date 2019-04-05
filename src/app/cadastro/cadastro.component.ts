@@ -16,7 +16,9 @@ export class CadastroComponent implements OnInit {
 
   public tiposDeDespesa: TipoDespesa[];
   public anexoUploaded: Anexo;
-  despesaForm: FormGroup;
+  public despesaForm: FormGroup;
+  public mensagemValidators: Object[] = new Array();
+  public mensagemSucesso: boolean = false;
 
   constructor(
     private despesaService: DespesaService,
@@ -37,7 +39,7 @@ export class CadastroComponent implements OnInit {
     this.despesaForm = new FormGroup({
       id: new FormControl(),
       descricao: new FormControl(),
-      valor: new FormControl(),
+      valorDespesa: new FormControl(),
       dataDespesa: new FormControl(),
       anexo: new FormControl(),
       tipoDespesa: new FormControl(),
@@ -47,12 +49,35 @@ export class CadastroComponent implements OnInit {
   onSubmit(despesa: Despesa) {
     this.despesaService.salvar(despesa).subscribe(
       response => {
-
+       if(response !== null) {
+         if(response.status === 400){
+           this.mensagemSucesso = false;
+           this.mensagemValidators = new Array();
+           response.error.forEach(element => {
+             this.mensagemValidators.push({
+               mensagem: element.defaultMessage,
+               field: element.field
+             });
+          });
+         }
+      } else {
+        this.despesaForm.reset();
+        this.fecharMensagensDeErro();
+        this.mensagemSucesso = true;
+      }
       },
       error => {
-        console.log('aqui + ', error);
+        console.log(error);
       }
     )
+  }
+  
+  fecharMensagemSucesso() {
+    this.mensagemSucesso = false;
+  }
+
+  fecharMensagensDeErro() {
+    this.mensagemValidators = new Array();
   }
 
   inputFile(event) {

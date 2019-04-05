@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class AnexoService {
 
-  private url = environment.host + 'anexo';
+  private url = environment.host + 'anexos';
 
   constructor(private http: HttpClient) { }
 
