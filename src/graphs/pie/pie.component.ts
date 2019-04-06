@@ -12,7 +12,8 @@ import * as moment from 'moment';
 export class PieComponent implements OnInit {
 
   public depesas: Despesa[];
-  public charInfo: [];
+  public graphBar: [];
+  public graphPie: [];
 
   constructor(private despesaService: DespesaService) { }
 
@@ -25,25 +26,51 @@ export class PieComponent implements OnInit {
   }
 
   iniciarGraph() {
-    const ctx = document.getElementById('canvas');
-    moment.locale('pt-BR');
+    const ctxBr = document.getElementById('bar');
+    const ctxPie = document.getElementById('pie');
     const graph = this.group(this.depesas);
     const graphLabels = Object.keys(graph);
     const graphData = Object.values(graph);
 
-    this.charInfo = new Chart(ctx, {
-      type: 'bar',
+    this.graphPie = new Chart(ctxPie, {
+      type: 'pie',
       data: {
-        labels: graphLabels.map( (e) => moment(e).format('L')),
+        labels: graphLabels.map( (e) => e),
         datasets: [
           { 
             data: graphData,
-            borderColor: "#3cba9f",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
             fill: false
           },
         ]
       },
       options: {
+        title: {
+          display: true,
+          text: 'Gráfico de despesas'
+        },
+        legend: {
+          display: false
+        },
+      }
+    });
+
+    this.graphBar = new Chart(ctxBr, {
+      type: 'bar',
+      data: {
+        labels: graphLabels.map( (e) => e),
+        datasets: [
+          { 
+            data: graphData,
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          },
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Gráfico de despesas'
+        },
         legend: {
           display: false
         },
@@ -54,9 +81,9 @@ export class PieComponent implements OnInit {
           yAxes: [{
             display: true,
             ticks: {
-              max: 50000,
+              max: 800,
               min: 0,
-              stepSize: 5000
+              stepSize: 100
             }
           }],
         }
@@ -67,11 +94,10 @@ export class PieComponent implements OnInit {
   // [1, 10, 7, 2, 1, 29, 10, 10, 3, 3]
   group(despesas: Despesa[]): {} {
     const grupo = despesas.reduce((acc, item) => {
-      if(String(item.dataDespesa) in acc) {
-        acc[String(item.dataDespesa)] = parseFloat(acc[String(item.dataDespesa)]) + parseFloat(item.valorDespesa.toString());
-        acc[String(item.dataDespesa)] = acc[String(item.dataDespesa)].toFixed(2);
+      if(String(item.tipoDespesa) in acc) {
+        acc[String(item.tipoDespesa.nome)] = parseFloat(acc[item.valorDespesa.toString()]) + parseFloat(item.valorDespesa.toString());
       } else {
-        acc[String(item.dataDespesa)] = [item.valorDespesa];
+        acc[String(item.tipoDespesa.nome)] = [item.valorDespesa];
       }
       return acc;
     }, {});
