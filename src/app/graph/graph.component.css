@@ -1,0 +1,17 @@
+.container {
+    margin: 0 auto;
+    max-width: 990px;
+    padding: 50px 20px;
+}
+
+@media (max-width: 1100px) {
+    .grafico {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #bar {
+        width: 40px;
+        height: 60px;
+    }
+}

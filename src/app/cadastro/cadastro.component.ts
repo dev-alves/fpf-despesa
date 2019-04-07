@@ -5,7 +5,7 @@ import { TipoDespesaService } from '../service/tipo-despesa.service';
 import { Despesa } from '../model/despesa';
 import { AnexoService } from '../service/anexo.service';
 import { Anexo } from '../model/anexo';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro',
@@ -16,19 +16,20 @@ export class CadastroComponent implements OnInit {
 
   public tiposDeDespesa: TipoDespesa[];
   public anexoUploaded: Anexo;
-  public despesaForm: FormGroup;
+  formGroup: FormGroup;
   public mensagemValidators: Object[] = new Array();
   public mensagemSucesso: boolean = false;
-
+  
   constructor(
+    private formBuilder: FormBuilder,
     private despesaService: DespesaService,
-    private tipoDespesa: TipoDespesaService, 
+    private tipoDespesaService: TipoDespesaService, 
     private anexoService: AnexoService) { }
 
 
   ngOnInit() {
     this.iniciarForm();
-    this.tipoDespesa.listarTipos().subscribe(
+    this.tipoDespesaService.listarTipos().subscribe(
       response => {
         this.tiposDeDespesa = response;
       }
@@ -36,14 +37,13 @@ export class CadastroComponent implements OnInit {
   }
 
   private iniciarForm() {
-    this.despesaForm = new FormGroup({
-      id: new FormControl(),
-      descricao: new FormControl(),
-      valorDespesa: new FormControl(),
-      dataDespesa: new FormControl(),
-      anexo: new FormControl(),
-      tipoDespesa: new FormControl(),
-    })
+    this.formGroup = this.formBuilder.group({
+      id: null,
+      descricao: null,
+      tipoDespesa: null,
+      valorDespesa: null,
+      dataDespesa: null,
+    });
   }
 
   onSubmit(despesa: Despesa) {
@@ -68,7 +68,7 @@ export class CadastroComponent implements OnInit {
          }
       } else {
         this.mensagemLabelComprovante('Anexar comprovante');
-        this.despesaForm.reset();
+        this.formGroup.reset();
         this.fecharMensagensDeErro();
         this.mensagemSucesso = true;
       }

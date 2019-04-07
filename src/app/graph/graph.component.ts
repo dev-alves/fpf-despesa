@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { DespesaService } from 'src/app/service/despesa.service';
 import { Chart } from 'chart.js';
 import { Despesa } from 'src/app/model/despesa';
-import * as moment from 'moment';
 
 @Component({
-  selector: 'app-pie',
-  templateUrl: './pie.component.html',
-  styleUrls: ['./pie.component.css']
+  selector: 'app-graph',
+  templateUrl: './graph.component.html',
+  styleUrls: ['./graph.component.css']
 })
-export class PieComponent implements OnInit {
+export class GraphComponent implements OnInit {
 
   public depesas: Despesa[];
   public graphBar: [];
@@ -40,7 +39,6 @@ export class PieComponent implements OnInit {
           { 
             data: graphData,
             backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-            fill: false
           },
         ]
       },
@@ -48,9 +46,6 @@ export class PieComponent implements OnInit {
         title: {
           display: true,
           text: 'Gráfico de despesas'
-        },
-        legend: {
-          display: false
         },
       }
     });
@@ -104,4 +99,5 @@ export class PieComponent implements OnInit {
 
     return grupo;
   }
+
 }

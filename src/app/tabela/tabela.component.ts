@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Despesa } from '../model/despesa';
 import { DespesaService } from '../service/despesa.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tabela',
@@ -11,7 +12,11 @@ export class TabelaComponent implements OnInit {
 
   public despesas: Despesa[];
 
-  constructor(private despesaService: DespesaService) { }
+  constructor(
+    private despesaService: DespesaService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
     this.despesaService.listarDespesas().subscribe(
@@ -19,6 +24,10 @@ export class TabelaComponent implements OnInit {
         this.despesas = response;
       }
     )
+  }
+
+  atualizarDespesa(id: number) {
+    this.router.navigate(['editar', id]);
   }
 
   remover(despesa: Despesa) {

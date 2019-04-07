@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { Despesa } from '../model/despesa';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +30,17 @@ export class DespesaService {
 
   deletarDespesa(despesa: Despesa): Observable<{}> {
     return this.http.delete(`${this.url}/${despesa.id}`);
+  }
+
+  buscar(id: number) {
+    return this.http.get<Despesa>(`${this.url}/${id}`).pipe(take(1));
+  }
+
+  editar(despesa: Despesa): Observable<any> {
+    return this.http.put(this.url, despesa, this.httpOptions)
+      .pipe(
+        catchError( e => of ( e ) )
+      );
   }
 
 }
