@@ -18,4 +18,4 @@ O SCD é um sistema de gerenciamento de despesas, que permite a inclusão, alter
 
 ## Executação e utilização
 
-Navegue pelo terminal até a raiz do projeto, até chegar na pasta fpf. Em seguida, execute: `ng serve` e acesse `http://localhost:4200/`
+Navegue pelo terminal até a raiz do projeto, até chegar na pasta `fpf`. Em seguida, execute: `ng serve` e acesse `http://localhost:4200/`
