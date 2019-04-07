@@ -13,8 +13,8 @@ O SCD é um sistema de gerenciamento de despesas, que permite a inclusão, alter
 * [NPM](https://www.npmjs.com/)
 
 ## Tutoriais de instalação
-* [Linux, Windows, MacOSX => NodeJS](https://nodejs.org/en/download/)
-* [Linux, Windows, MacOSX => NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+* [Linux, Windows, MacOSX → NodeJS](https://nodejs.org/en/download/)
+* [Linux, Windows, MacOSX → NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
 ## Executação e utilização
 
