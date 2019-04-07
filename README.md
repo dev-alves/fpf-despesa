@@ -1,27 +1,21 @@
-# Despesa
+# Front-end do Sistema de Controle de Despesa
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.4.
+O SCD é um sistema de gerenciamento de despesas, que permite a inclusão, alteração, edição e exclusão de despesas cadastradas. O sistema disponibiliza gráficos para auxiliar o usuário a identificar seus maiores gastos por categoria.
 
-## Development server
+## Tecnologias utilizadas
+* [Angular](https://angular.io/) - Framework front-end
+* [NodeJS](https://nodejs.org/en/) - Para utilização do NPM
+* [NPM](https://www.npmjs.com/) - Gerenciador de módulos códigos javascript
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Pré-requisitos
+* [NodeJS](https://nodejs.org/en/) - Para utilização do NPM
+* [NPM](https://www.npmjs.com/)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tutoriais de instalação
+* [Linux, Windows, MacOSX => NodeJS](https://nodejs.org/en/download/)
+* [Linux, Windows, MacOSX => NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-## Build
+## Executação e utilização
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Navegue pelo terminal até a raiz do projeto, até chegar na pasta fpf. Em seguida, execute: `ng serve` e acesse `http://localhost:4200/`
